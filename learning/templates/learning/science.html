@@ -1,0 +1,14 @@
+{% extends 'learning/base.html' %}
+{% block title %}Science Study | Study Hub{% endblock %}
+{% block content %}
+<p class="eyebrow">EXPLORE YOUR UNIVERSE</p>
+<h1>Science Study</h1>
+<p class="intro">Welcome to your solar system study space! Our solar system includes the Sun, eight planets, their moons, and many smaller objects. Earth is our home and the third planet from the Sun.</p>
+<article>
+    <h2>Start with the Sun</h2>
+    <p>The Sun is a star at the centre of our solar system. Its gravity keeps the planets in orbit, and its light and warmth help support life on Earth.</p>
+    <p>Think about it: which planet would you like to learn about first?</p>
+    <a class="button" href="{% url 'learning:solar_system' %}">Open Solar System Explorer &rarr;</a>
+</article>
+<a class="button" href="{% url 'learning:home' %}">&larr; Back to Study Hub</a>
+{% endblock %}
