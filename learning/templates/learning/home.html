@@ -2,6 +2,9 @@
 {% block content %}
 <p class="eyebrow">YOUR LEARNING SPACE</p>
 <h1>Study Hub</h1>
+{% if user.is_authenticated %}
+<p>Welcome, {{ user.username }}!</p>
+{% endif %}
 <p class="intro">Big ideas start with small discoveries. Choose a subject and explore something new.</p>
 <section class="subjects" aria-label="Study subjects">
     <article><p class="eyebrow">01 / EXPLORE</p><h2>Science</h2><p>From our home planet to the worlds beyond, discover the solar system.</p><a class="button" href="{% url 'learning:science' %}">Science <span aria-hidden="true">&rarr;</span></a></article>

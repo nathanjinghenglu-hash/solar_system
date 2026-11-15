@@ -8,7 +8,21 @@
     <link rel="stylesheet" href="{% static 'learning/style.css' %}">
 </head>
 <body>
-    <header><a class="brand" href="{% url 'learning:home' %}">Study Hub</a><span>A little curiosity, every day.</span></header>
+    <header>
+        <a class="brand" href="{% url 'learning:home' %}">Study Hub</a>
+        <span>A little curiosity, every day.</span>
+        <nav aria-label="Account">
+            {% if user.is_authenticated %}
+            <form method="post" action="{% url 'learning:logout' %}">
+                {% csrf_token %}
+                <button class="button" type="submit">Log out</button>
+            </form>
+            {% else %}
+            <a href="{% url 'learning:login' %}">Log in</a>
+            <a href="{% url 'learning:signup' %}">Sign up</a>
+            {% endif %}
+        </nav>
+    </header>
     <main>{% block content %}{% endblock %}</main>
     <footer>Take your time. Make discoveries. Keep learning.</footer>
 </body>

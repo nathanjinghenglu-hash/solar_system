@@ -1,0 +1,12 @@
+{% extends 'learning/base.html' %}
+{% block title %}Log in | Study Hub{% endblock %}
+{% block content %}
+<h1>Log in</h1>
+<form class="account-form" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="hidden" name="next" value="{{ next }}">
+    <button class="button" type="submit">Log in</button>
+</form>
+<p>New to Study Hub? <a href="{% url 'learning:signup' %}">Create an account</a>.</p>
+{% endblock %}
