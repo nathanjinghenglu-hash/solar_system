@@ -10,10 +10,17 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
 from pathlib import Path
+
+import dj_database_url
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Existing environment variables take priority over local development values.
+load_dotenv(BASE_DIR / '.env.local', override=False)
 
 
 # Quick-start development settings - unsuitable for production
@@ -80,6 +87,15 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+if os.environ.get('DATABASE_URL'):
+    DATABASES['default'] = dj_database_url.config(
+        conn_max_age=0,
+        ssl_require=True,
+    )
+    # Neon pooled connections use transaction pooling.
+    DATABASES['default']['DISABLE_SERVER_SIDE_CURSORS'] = True
+    DATABASES['default'].setdefault('OPTIONS', {})['connect_timeout'] = 15
 
 
 # Password validation
